@@ -15,7 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="NetworkPicture" name="widget" native="true">
+    <widget class="NetworkPicture" name="dailyWlanGraph" native="true">
      <property name="url" stdset="0">
       <url>
        <string>http://mikrotik/graphs/iface/wlan1/daily.gif</string>

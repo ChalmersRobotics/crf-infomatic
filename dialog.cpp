@@ -10,7 +10,7 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
 
     QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), ui->widget, SLOT(updatePicture()));
+    connect(timer, SIGNAL(timeout()), ui->dailyWlanGraph, SLOT(updatePicture()));
     // Update picture every minute
     timer->start(60*1000);
 }
