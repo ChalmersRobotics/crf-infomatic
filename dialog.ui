@@ -13,13 +13,52 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
     <widget class="NetworkPicture" name="dailyWlanGraph" native="true">
      <property name="url" stdset="0">
       <url>
        <string>http://mikrotik/graphs/iface/wlan1/daily.gif</string>
       </url>
+     </property>
+     <property name="updateInterval" stdset="0">
+      <number>60</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="NetworkPicture" name="weeklyWlanGraph" native="true">
+     <property name="url" stdset="0">
+      <url>
+       <string>http://mikrotik/graphs/iface/wlan1/weekly.gif</string>
+      </url>
+     </property>
+     <property name="updateInterval" stdset="0">
+      <number>60</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="NetworkPicture" name="monthlyWlanGraph" native="true">
+     <property name="url" stdset="0">
+      <url>
+       <string>http://mikrotik/graphs/iface/wlan1/monthly.gif</string>
+      </url>
+     </property>
+     <property name="updateInterval" stdset="0">
+      <number>60</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="NetworkPicture" name="yarlyWlanGraph" native="true">
+     <property name="url" stdset="0">
+      <url>
+       <string>http://mikrotik/graphs/iface/wlan1/yearly.gif</string>
+      </url>
+     </property>
+     <property name="updateInterval" stdset="0">
+      <number>60</number>
      </property>
     </widget>
    </item>
