@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,9 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         dialog.cpp \
-    networkpicture.cpp
+    networkpicture.cpp \
+    nextdeparturelabel.cpp \
+    departureinfo.cpp
 
 HEADERS  += dialog.h \
-    networkpicture.h
+    networkpicture.h \
+    nextdeparturelabel.h \
+    departureinfo.h
 
 FORMS    += dialog.ui

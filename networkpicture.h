@@ -27,10 +27,10 @@ public:
     void setUpdateInterval(int seconds);
 
 signals:
-    
+
 public slots:
     void updatePicture();
-    
+
 protected slots:
     void httpRequestFinished(int, bool);
 

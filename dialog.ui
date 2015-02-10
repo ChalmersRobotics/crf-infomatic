@@ -13,9 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout" rowstretch="1,1,0">
    <item row="0" column="0">
-    <widget class="NetworkPicture" name="dailyWlanGraph" native="true">
+    <widget class="NetworkPicture" name="dailyWlanGraph">
      <property name="url" stdset="0">
       <url>
        <string>http://mikrotik/graphs/iface/wlan1/daily.gif</string>
@@ -27,7 +27,7 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="NetworkPicture" name="weeklyWlanGraph" native="true">
+    <widget class="NetworkPicture" name="weeklyWlanGraph">
      <property name="url" stdset="0">
       <url>
        <string>http://mikrotik/graphs/iface/wlan1/weekly.gif</string>
@@ -39,7 +39,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="NetworkPicture" name="monthlyWlanGraph" native="true">
+    <widget class="NetworkPicture" name="monthlyWlanGraph">
      <property name="url" stdset="0">
       <url>
        <string>http://mikrotik/graphs/iface/wlan1/monthly.gif</string>
@@ -51,7 +51,7 @@
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="NetworkPicture" name="yarlyWlanGraph" native="true">
+    <widget class="NetworkPicture" name="yearlyWlanGraph">
      <property name="url" stdset="0">
       <url>
        <string>http://mikrotik/graphs/iface/wlan1/yearly.gif</string>
@@ -62,15 +62,50 @@
      </property>
     </widget>
    </item>
+   <item row="2" column="0" colspan="2">
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Next Departures from Chalmers:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="NextDepartureLabel" name="departureLabel">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="updateInterval" stdset="0">
+        <number>60</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>NetworkPicture</class>
-   <extends>QWidget</extends>
+   <extends>QLabel</extends>
    <header>networkpicture.h</header>
-   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>NextDepartureLabel</class>
+   <extends>QLabel</extends>
+   <header>nextdeparturelabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
