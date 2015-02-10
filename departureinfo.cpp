@@ -8,7 +8,7 @@
 
 DepartureInfo::DepartureInfo(QXmlStreamReader &xml)
 {
-    Q_ASSERT(xml.isStartElement() && xml.name() == "Departuer");
+    Q_ASSERT(xml.isStartElement() && xml.name() == "Departure");
 
     QXmlStreamAttributes attributes = xml.attributes();
     QXmlStreamAttributes::const_iterator it = attributes.constBegin();
