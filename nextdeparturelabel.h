@@ -35,13 +35,21 @@ protected slots:
 
 protected:
     static const QUrl baseUrl;
-    static const QString serviceName;
     static const QString key;
+    static const double chalmersLatitude;
+    static const double chalmersLongitude;
+
     quint64 stationId;
-    int httpGetId;
+
+    int stationHttpGetId;
+    int departureHttpGetId;
     QHttp http;
+
     QTimer updateTimer;
     QVector<DepartureInfo> departures;
+
+    void getStationId();
+    void getDepartures();
 };
 
 #endif // NEXTDEPARTURELABEL_H
