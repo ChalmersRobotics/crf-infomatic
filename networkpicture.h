@@ -29,10 +29,10 @@ public:
 signals:
 
 public slots:
-    void updatePicture();
+    virtual void updatePicture();
 
 protected slots:
-    void httpRequestFinished(int, bool);
+    virtual void httpRequestFinished(int, bool);
 
 protected:
     QTemporaryFile *tempFile;

@@ -16,11 +16,13 @@ SOURCES += main.cpp\
         dialog.cpp \
     networkpicture.cpp \
     nextdeparturelabel.cpp \
-    departureinfo.cpp
+    departureinfo.cpp \
+    netstreampicture.cpp
 
 HEADERS  += dialog.h \
     networkpicture.h \
     nextdeparturelabel.h \
-    departureinfo.h
+    departureinfo.h \
+    netstreampicture.h
 
 FORMS    += dialog.ui
