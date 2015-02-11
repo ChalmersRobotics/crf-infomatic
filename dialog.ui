@@ -14,19 +14,7 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="1,1,1,1,0">
-   <item row="1" column="1">
-    <widget class="NetworkPicture" name="weeklyWlanGraph">
-     <property name="url" stdset="0">
-      <url>
-       <string>http://mikrotik/graphs/iface/wlan1/weekly.gif</string>
-      </url>
-     </property>
-     <property name="updateInterval" stdset="0">
-      <number>60</number>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" colspan="2">
+   <item row="4" column="0" colspan="3">
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="label">
@@ -57,42 +45,6 @@
      </item>
     </layout>
    </item>
-   <item row="0" column="1">
-    <widget class="NetworkPicture" name="dailyWlanGraph">
-     <property name="url" stdset="0">
-      <url>
-       <string>http://mikrotik/graphs/iface/wlan1/daily.gif</string>
-      </url>
-     </property>
-     <property name="updateInterval" stdset="0">
-      <number>60</number>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="NetworkPicture" name="yearlyWlanGraph">
-     <property name="url" stdset="0">
-      <url>
-       <string>http://mikrotik/graphs/iface/wlan1/yearly.gif</string>
-      </url>
-     </property>
-     <property name="updateInterval" stdset="0">
-      <number>60</number>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="NetworkPicture" name="monthlyWlanGraph">
-     <property name="url" stdset="0">
-      <url>
-       <string>http://mikrotik/graphs/iface/wlan1/monthly.gif</string>
-      </url>
-     </property>
-     <property name="updateInterval" stdset="0">
-      <number>60</number>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0" rowspan="2">
     <widget class="NetStreamPicture" name="innerWebcam">
      <property name="text">
@@ -114,6 +66,61 @@
       <url>
        <string>http://crf-router:8081/</string>
       </url>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="NetworkPicture" name="dailyWlanGraph">
+     <property name="url" stdset="0">
+      <url>
+       <string>http://mikrotik/graphs/iface/wlan1/daily.gif</string>
+      </url>
+     </property>
+     <property name="updateInterval" stdset="0">
+      <number>60</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="NetworkPicture" name="weeklyWlanGraph">
+     <property name="url" stdset="0">
+      <url>
+       <string>http://mikrotik/graphs/iface/wlan1/weekly.gif</string>
+      </url>
+     </property>
+     <property name="updateInterval" stdset="0">
+      <number>60</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="NetworkPicture" name="monthlyWlanGraph">
+     <property name="url" stdset="0">
+      <url>
+       <string>http://mikrotik/graphs/iface/wlan1/monthly.gif</string>
+      </url>
+     </property>
+     <property name="updateInterval" stdset="0">
+      <number>60</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="NetworkPicture" name="yearlyWlanGraph">
+     <property name="url" stdset="0">
+      <url>
+       <string>http://mikrotik/graphs/iface/wlan1/yearly.gif</string>
+      </url>
+     </property>
+     <property name="updateInterval" stdset="0">
+      <number>60</number>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" rowspan="2" colspan="2">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Har Du bra idéer om vad du vill se här?&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Kanske en skiss över hur GUI:t bör se ut?&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Skicka dina förslag till risca@powerlamerz.org!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
