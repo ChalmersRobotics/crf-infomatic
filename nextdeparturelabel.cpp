@@ -76,6 +76,7 @@ void NextDepartureLabel::httpRequestFinished(int id, bool error)
         departureHttpGetId = 0;
         QXmlStreamReader xml(http.readAll());
 
+        departures.clear();
         if (xml.readNextStartElement() && xml.name() == "DepartureBoard") {
             while (xml.readNextStartElement()) {
                 if (xml.name() == "Departure") {
