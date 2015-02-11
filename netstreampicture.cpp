@@ -18,6 +18,7 @@ NetStreamPicture::NetStreamPicture(QWidget *parent) :
             this, SLOT(httpFirstResponseHeaderReceived(QHttpResponseHeader)));
     connect(&http, SIGNAL(readyRead(QHttpResponseHeader)),
             this, SLOT(httpReadyRead(QHttpResponseHeader)));
+    updateTimer.disconnect();
 }
 
 void NetStreamPicture::updatePicture()
@@ -26,7 +27,7 @@ void NetStreamPicture::updatePicture()
         return;
     }
 
-    http.clearPendingRequests();
+    http.abort();
     http.setHost(url.host(), QHttp::ConnectionModeHttp, url.port(80));
     httpGetId = http.get(url.path());
 }
@@ -34,11 +35,13 @@ void NetStreamPicture::updatePicture()
 void NetStreamPicture::httpRequestFinished(int id, bool error)
 {
     if (id == httpGetId) {
+        qDebug() << "Request finished, sending new";
+        updatePicture();
     }
 
     if (error) {
-        clear();
-        setText(http.errorString());
+        qDebug() << "http request failed:" << http.errorString();
+        updatePicture();
     }
 }
 
@@ -63,12 +66,7 @@ void NetStreamPicture::httpReadyRead(const QHttpResponseHeader &)
         }
 
         if (bytesLeft == 0) {
-            QPixmap pixmap;
-            if (pixmap.loadFromData(imageBuffer)) {
-                setPixmap(pixmap.scaled(this->size(), Qt::KeepAspectRatio));
-            } else {
-                qDebug() << "pixmap.loadFromData() failed";
-            }
+            setPixmapFromData(imageBuffer);
             imageBuffer.clear();
         }
     }
@@ -102,12 +100,26 @@ void NetStreamPicture::httpReadyRead(const QHttpResponseHeader &)
                     headerBuffer.remove(0, 1);
                 }
 
-                imageBuffer.clear();
-                imageBuffer.append(headerBuffer);
-                bytesLeft = contentLength - headerBuffer.size();
-
-                headerBuffer.clear();
+                if (headerBuffer.size() >= contentLength) {
+                    setPixmapFromData(headerBuffer);
+                    headerBuffer.remove(0, contentLength);
+                } else {
+                    imageBuffer.clear();
+                    imageBuffer.append(headerBuffer);
+                    bytesLeft = contentLength - headerBuffer.size();
+                    headerBuffer.clear();
+                }
             }
         }
+    }
+}
+
+void NetStreamPicture::setPixmapFromData(const QByteArray &data)
+{
+    QPixmap pixmap;
+    if (pixmap.loadFromData(data)) {
+        setPixmap(pixmap.scaled(this->size(), Qt::KeepAspectRatio));
+    } else {
+        qDebug() << "pixmap.loadFromData() failed";
     }
 }

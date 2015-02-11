@@ -51,6 +51,7 @@ void NextDepartureLabel::httpRequestFinished(int id, bool error)
         clear();
         setText(http.errorString());
     } else if (id == stationHttpGetId) {
+        stationHttpGetId = 0;
         QXmlStreamReader xml;
         xml.addData(http.readAll());
 
@@ -68,6 +69,7 @@ void NextDepartureLabel::httpRequestFinished(int id, bool error)
             getDepartures();
         }
     } else if (id == departureHttpGetId) {
+        departureHttpGetId = 0;
         QXmlStreamReader xml;
         xml.addData(http.readAll());
 
@@ -113,6 +115,7 @@ void NextDepartureLabel::getStationId()
 
     url.addQueryItem("authKey", key);
 
+    http.abort();
     http.setHost(baseUrl.host(), baseUrl.port(80));
     stationHttpGetId = http.get(url.toString());
 }

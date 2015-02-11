@@ -32,6 +32,8 @@ protected:
     QByteArray imageBuffer;
     QByteArray headerBuffer;
     static const int minHeaderBytes;
+
+    void setPixmapFromData(const QByteArray &data);
 };
 
 #endif // NETSTREAMPICTURE_H
