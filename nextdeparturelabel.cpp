@@ -52,15 +52,19 @@ void NextDepartureLabel::httpRequestFinished(int id, bool error)
         setText(http.errorString());
     } else if (id == stationHttpGetId) {
         stationHttpGetId = 0;
-        QXmlStreamReader xml;
-        xml.addData(http.readAll());
+        QXmlStreamReader xml(http.readAll());
 
+        quint64 tempStationId = 0;
         if (xml.readNextStartElement() && xml.name() == "LocationList") {
             if (xml.readNextStartElement() && xml.name() == "StopLocation") {
                 if (xml.attributes().hasAttribute("id")) {
-                    stationId = xml.attributes().value("id").toString().toULongLong();
+                    tempStationId = xml.attributes().value("id").toString().toULongLong();
                 }
             }
+        }
+        // Keep old station id if no new id was received.
+        if (tempStationId != 0) {
+            stationId = tempStationId;
         }
 
         if (xml.hasError()) {
@@ -70,8 +74,7 @@ void NextDepartureLabel::httpRequestFinished(int id, bool error)
         }
     } else if (id == departureHttpGetId) {
         departureHttpGetId = 0;
-        QXmlStreamReader xml;
-        xml.addData(http.readAll());
+        QXmlStreamReader xml(http.readAll());
 
         if (xml.readNextStartElement() && xml.name() == "DepartureBoard") {
             while (xml.readNextStartElement()) {
