@@ -17,12 +17,19 @@ SOURCES += main.cpp\
     networkpicture.cpp \
     nextdeparturelabel.cpp \
     departureinfo.cpp \
-    netstreampicture.cpp
+    netstreampicture.cpp \
+    digitalclock.cpp
 
 HEADERS  += dialog.h \
     networkpicture.h \
     nextdeparturelabel.h \
     departureinfo.h \
-    netstreampicture.h
+    netstreampicture.h \
+    digitalclock.h
 
 FORMS    += dialog.ui
+
+OTHER_FILES +=
+
+RESOURCES += \
+    resources.qrc
