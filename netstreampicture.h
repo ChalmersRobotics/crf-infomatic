@@ -14,6 +14,7 @@ class NetStreamPicture : public NetworkPicture
     Q_OBJECT
 public:
     explicit NetStreamPicture(QWidget *parent = 0);
+    ~NetStreamPicture() {};
     
 signals:
     

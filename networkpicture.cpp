@@ -14,6 +14,11 @@ NetworkPicture::NetworkPicture(QWidget *parent) :
             this, SLOT(updatePicture()));
 }
 
+NetworkPicture::~NetworkPicture()
+{
+    delete tempFile;
+}
+
 QUrl NetworkPicture::getUrl() const
 {
     return url;

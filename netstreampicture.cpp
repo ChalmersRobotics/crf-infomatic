@@ -14,6 +14,7 @@ NetStreamPicture::NetStreamPicture(QWidget *parent) :
     NetworkPicture(parent),
     bytesLeft(0)
 {
+    http.disconnect();
     connect(&http, SIGNAL(responseHeaderReceived(QHttpResponseHeader)),
             this, SLOT(httpFirstResponseHeaderReceived(QHttpResponseHeader)));
     connect(&http, SIGNAL(readyRead(QHttpResponseHeader)),

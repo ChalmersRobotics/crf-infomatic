@@ -19,6 +19,7 @@ class NetworkPicture : public QLabel
 
 public:
     explicit NetworkPicture(QWidget *parent = 0);
+    virtual ~NetworkPicture();
     
     QUrl getUrl() const;
     void setUrl(const QUrl &newUrl);
