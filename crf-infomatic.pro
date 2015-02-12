@@ -18,14 +18,17 @@ SOURCES += main.cpp\
     nextdeparturelabel.cpp \
     departureinfo.cpp \
     netstreampicture.cpp \
-    digitalclock.cpp
+    digitalclock.cpp \
+    nextcalendarevent.cpp
 
 HEADERS  += dialog.h \
     networkpicture.h \
     nextdeparturelabel.h \
     departureinfo.h \
     netstreampicture.h \
-    digitalclock.h
+    digitalclock.h \
+    nextcalendarevent.h \
+    calendarevent.h
 
 FORMS    += dialog.ui
 
