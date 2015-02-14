@@ -1,4 +1,5 @@
 #include "nextcalendarevent.h"
+#include "ui_nextcalendarevent.h"
 
 #include <QDateTime>
 #include <QDebug>
@@ -14,13 +15,20 @@ const QUrl NextCalendarEvent::baseUrl = QUrl("https://www.googleapis.com/calenda
 
 
 NextCalendarEvent::NextCalendarEvent(QWidget *parent) :
-    QLabel(parent),
-    httpGetId(0)
+    QWidget(parent),
+    httpGetId(0),
+    ui(new Ui::NextCalendarEvent)
 {
+    ui->setupUi(this);
     connect(&http, SIGNAL(requestFinished(int,bool)),
             this, SLOT(httpRequestFinished(int,bool)));
     connect(&updateTimer, SIGNAL(timeout()),
             this, SLOT(updateCalendar()));
+}
+
+NextCalendarEvent::~NextCalendarEvent()
+{
+    delete ui;
 }
 
 int NextCalendarEvent::getUpdateInterval() const
@@ -69,6 +77,8 @@ void NextCalendarEvent::updateCalendar()
 
     QMap<QString, QVariant> params;
     params["maxResults"] = 2;
+    params["singleEvents"] = true;
+    params["orderBy"] = "startTime";
 
     QMap<QString, QVariant>::const_iterator it = params.constBegin();
     while (it != params.constEnd()) {
@@ -84,11 +94,23 @@ void NextCalendarEvent::updateCalendar()
     httpGetId = http.get(url.toEncoded());
 }
 
+void NextCalendarEvent::clear()
+{
+    ui->dateWidget_1->clear();
+    ui->titleLabel_1->clear();
+    ui->plainTextEdit_1->clear();
+
+
+    ui->dateWidget_2->clear();
+    ui->titleLabel_2->clear();
+    ui->plainTextEdit_2->clear();
+}
+
 void NextCalendarEvent::httpRequestFinished(int id, bool error)
 {
     if (error) {
         clear();
-        setText(http.errorString());
+        ui->titleLabel_1->setText(http.errorString());
     } else if (id == httpGetId) {
         QByteArray data = http.readAll();
         QScriptValue sc;
@@ -98,6 +120,7 @@ void NextCalendarEvent::httpRequestFinished(int id, bool error)
         QScriptValue items = sc.property("items");
         if (items.isValid() && items.isArray()) {
 
+            upcomingEvents.clear();
             QScriptValueIterator it(items);
             while (it.hasNext()) {
                 it.next();
@@ -119,15 +142,30 @@ void NextCalendarEvent::httpRequestFinished(int id, bool error)
 
         if (upcomingEvents.isEmpty()) {
             clear();
-            setText("No upcoming events");
+            ui->titleLabel_1->setText("No upcoming events");
         } else {
-            const CalendarEvent &event = upcomingEvents.at(0);
-            QString text = tr("Coming events: ") + event.title;
-            for (int i = 1; i < upcomingEvents.size() && i < 2; ++i) {
-                const CalendarEvent &event = upcomingEvents.at(i);
-                text += ", " + event.title;
+            clear();
+            CalendarEvent event = upcomingEvents.at(0);
+            ui->titleLabel_1->setText(event.start.time().toString("H:mm") + ": " + event.title);
+            ui->dateWidget_1->setDate(event.start.date());
+            if (event.description.isEmpty()) {
+                ui->plainTextEdit_1->appendPlainText(tr("No description available"));
+            } else {
+                ui->plainTextEdit_1->appendPlainText(event.description);
             }
-            setText(text);
+            ui->plainTextEdit_1->moveCursor(QTextCursor::Start);
+            ui->plainTextEdit_1->ensureCursorVisible();
+
+            event = upcomingEvents.at(1);
+            ui->titleLabel_2->setText(event.start.time().toString("H:mm") + ": " + event.title);
+            ui->dateWidget_2->setDate(event.start.date());
+            if (event.description.isEmpty()) {
+                ui->plainTextEdit_2->appendPlainText(tr("No description available"));
+            } else {
+                ui->plainTextEdit_2->appendPlainText(event.description);
+            }
+            ui->plainTextEdit_2->moveCursor(QTextCursor::Start);
+            ui->plainTextEdit_2->ensureCursorVisible();
         }
     }
 }

@@ -13,57 +13,8 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,1,0" columnstretch="1,0,1">
-   <item row="0" column="1">
-    <widget class="DigitalClock" name="lcdNumber"/>
-   </item>
-   <item row="0" column="2">
-    <widget class="NextCalendarEvent" name="eventLabel">
-     <property name="font">
-      <font>
-       <pointsize>16</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="updateInterval" stdset="0">
-      <number>43200</number>
-     </property>
-     <property name="calendarId" stdset="0">
-      <string notr="true">chalmersrobotics@gmail.com</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="NetStreamPicture" name="innerWebcam">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="url" stdset="0">
-        <url>
-         <string>http://crf-rpi-webcam:8081/</string>
-        </url>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="NetStreamPicture" name="outerWebcam">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="url" stdset="0">
-        <url>
-         <string>http://crf-router:8081/</string>
-        </url>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="1" column="1">
+  <layout class="QGridLayout" name="gridLayout_3" rowstretch="2,9,9,0" columnstretch="1,0,1">
+   <item row="2" column="1">
     <widget class="QLabel" name="label_2">
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Har Du bra idéer om vad du vill se här?&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Kanske en skiss över hur GUI:t bör se ut?&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Skicka dina förslag till risca@powerlamerz.org!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -73,9 +24,9 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="2">
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
+   <item row="0" column="2" rowspan="3">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
       <widget class="NetworkPicture" name="dailyWlanGraph">
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
@@ -90,7 +41,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item>
       <widget class="NetworkPicture" name="weeklyWlanGraph">
        <property name="url" stdset="0">
         <url>
@@ -102,7 +53,7 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item>
       <widget class="NetworkPicture" name="monthlyWlanGraph">
        <property name="url" stdset="0">
         <url>
@@ -114,7 +65,7 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item>
       <widget class="NetworkPicture" name="yearlyWlanGraph">
        <property name="url" stdset="0">
         <url>
@@ -128,7 +79,7 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="0" colspan="2">
+   <item row="3" column="0" colspan="3">
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="label">
@@ -159,10 +110,62 @@
      </item>
     </layout>
    </item>
+   <item row="1" column="0" rowspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="NetStreamPicture" name="innerWebcam">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="url" stdset="0">
+        <url>
+         <string>http://crf-rpi-webcam:8081/</string>
+        </url>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="NetStreamPicture" name="outerWebcam">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="url" stdset="0">
+        <url>
+         <string>http://crf-router:8081/</string>
+        </url>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="DigitalClock" name="lcdNumber"/>
+   </item>
+   <item row="0" column="1" rowspan="2">
+    <widget class="NextCalendarEvent" name="eventLabel" native="true">
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="updateInterval" stdset="0">
+      <number>43200</number>
+     </property>
+     <property name="calendarId" stdset="0">
+      <string notr="true">chalmersrobotics@gmail.com</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
+  <customwidget>
+   <class>NextCalendarEvent</class>
+   <extends>QWidget</extends>
+   <header>nextcalendarevent.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>NetworkPicture</class>
    <extends>QLabel</extends>
@@ -182,11 +185,6 @@
    <class>DigitalClock</class>
    <extends>QLCDNumber</extends>
    <header>digitalclock.h</header>
-  </customwidget>
-  <customwidget>
-   <class>NextCalendarEvent</class>
-   <extends>QLabel</extends>
-   <header>nextcalendarevent.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

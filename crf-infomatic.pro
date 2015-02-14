@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     departureinfo.cpp \
     netstreampicture.cpp \
     digitalclock.cpp \
-    nextcalendarevent.cpp
+    nextcalendarevent.cpp \
+    tearoffdate.cpp
 
 HEADERS  += dialog.h \
     networkpicture.h \
@@ -28,9 +29,11 @@ HEADERS  += dialog.h \
     netstreampicture.h \
     digitalclock.h \
     nextcalendarevent.h \
-    calendarevent.h
+    calendarevent.h \
+    tearoffdate.h
 
-FORMS    += dialog.ui
+FORMS    += dialog.ui \
+    nextcalendarevent.ui
 
 OTHER_FILES +=
 

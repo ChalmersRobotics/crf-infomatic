@@ -13,8 +13,11 @@ class QTextStream;
 
 #include "calendarevent.h"
 
+namespace Ui {
+class NextCalendarEvent;
+}
 
-class NextCalendarEvent : public QLabel
+class NextCalendarEvent : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(int updateInterval
@@ -30,6 +33,7 @@ class NextCalendarEvent : public QLabel
 
 public:
     explicit NextCalendarEvent(QWidget *parent = 0);
+    ~NextCalendarEvent();
 
     int getUpdateInterval() const;
     void setUpdateInterval(int seconds);
@@ -44,6 +48,7 @@ signals:
     
 public slots:
     void updateCalendar();
+    void clear();
 
 protected slots:
     void httpRequestFinished(int, bool);
@@ -60,6 +65,9 @@ protected:
     QVector<CalendarEvent> upcomingEvents;
     QString getCurrentISOTime();
     QString readQuotedWord(QTextStream &ts);
+
+private:
+    Ui::NextCalendarEvent *ui;
 };
 
 #endif // NEXTCALENDAREVENT_H
