@@ -3,6 +3,9 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QMap>
+#include <QScriptEngine>
+#include <QScriptValue>
+#include <QScriptValueIterator>
 #include <QSslError>
 #include <QVariant>
 
@@ -88,22 +91,32 @@ void NextCalendarEvent::httpRequestFinished(int id, bool error)
         setText(http.errorString());
     } else if (id == httpGetId) {
         QByteArray data = http.readAll();
-        QTextStream ts(&data);
-        upcomingEvents.clear();
-        do {
-            QString word;
-            do {
-                word = readQuotedWord(ts);
-            } while (!ts.atEnd() && !word.contains("summary"));
-            if (!ts.atEnd()) {
-                word = readQuotedWord(ts);
-                if (word != calendarId) {
-                    CalendarEvent event;
-                    event.title = word;
-                    upcomingEvents.append(event);
-                }
+        QScriptValue sc;
+        QScriptEngine engine;
+        sc = engine.evaluate("(" + QString::fromUtf8(data) + ")");
+
+        QScriptValue items = sc.property("items");
+        if (items.isValid() && items.isArray()) {
+
+            QScriptValueIterator it(items);
+            while (it.hasNext()) {
+                it.next();
+                CalendarEvent event;
+                QScriptValue item = it.value();
+
+                event.title = item.property("summary").toString();
+                event.description = item.property("description").toString();
+
+                QString s = item.property("start").property("dateTime").toString();
+                event.start = QDateTime::fromString(s, Qt::ISODate);
+
+                s = item.property("end").property("dateTime").toString();
+                event.end = QDateTime::fromString(s, Qt::ISODate);
+
+                upcomingEvents.append(event);
             }
-        } while (!ts.atEnd());
+        }
+
         if (upcomingEvents.isEmpty()) {
             clear();
             setText("No upcoming events");
