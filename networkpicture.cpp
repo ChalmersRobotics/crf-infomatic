@@ -54,6 +54,8 @@ void NetworkPicture::updatePicture()
     delete tempFile;
     tempFile = new QTemporaryFile();
     if (!tempFile->open()) {
+        delete tempFile;
+        tempFile = 0;
         return;
     }
 
