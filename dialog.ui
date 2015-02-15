@@ -13,17 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_3" rowstretch="2,9,9,0" columnstretch="1,0,1">
-   <item row="2" column="1">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Har Du bra idéer om vad du vill se här?&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Kanske en skiss över hur GUI:t bör se ut?&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Skicka dina förslag till risca@powerlamerz.org!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
+  <layout class="QGridLayout" name="gridLayout_3" rowstretch="2,9,9,0,0" columnstretch="1,0,1">
    <item row="0" column="2" rowspan="3">
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
@@ -79,7 +69,25 @@
      </item>
     </layout>
    </item>
-   <item row="3" column="0" colspan="3">
+   <item row="0" column="0">
+    <widget class="DigitalClock" name="lcdNumber"/>
+   </item>
+   <item row="0" column="1" rowspan="2">
+    <widget class="NextCalendarEvent" name="eventLabel" native="true">
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="updateInterval" stdset="0">
+      <number>43200</number>
+     </property>
+     <property name="calendarId" stdset="0">
+      <string notr="true">chalmersrobotics@gmail.com</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="3">
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="label">
@@ -110,6 +118,16 @@
      </item>
     </layout>
    </item>
+   <item row="2" column="1">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Har Du bra idéer om vad du vill se här?&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Kanske en skiss över hur GUI:t bör se ut?&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Skicka dina förslag till risca@powerlamerz.org!&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="0" rowspan="2">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
@@ -138,23 +156,38 @@
      </item>
     </layout>
    </item>
-   <item row="0" column="0">
-    <widget class="DigitalClock" name="lcdNumber"/>
-   </item>
-   <item row="0" column="1" rowspan="2">
-    <widget class="NextCalendarEvent" name="eventLabel" native="true">
-     <property name="font">
-      <font>
-       <pointsize>16</pointsize>
-      </font>
-     </property>
-     <property name="updateInterval" stdset="0">
-      <number>43200</number>
-     </property>
-     <property name="calendarId" stdset="0">
-      <string notr="true">chalmersrobotics@gmail.com</string>
-     </property>
-    </widget>
+   <item row="3" column="0" colspan="3">
+    <layout class="QFormLayout" name="formLayout_2">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Random quote:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QuoteLabel" name="quoteLabel">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="url" stdset="0">
+        <url>
+         <string>https://dl.dropboxusercontent.com/s/8fshysyrr1x0wn7/crf quotelist 2010-20xx.txt</string>
+        </url>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -185,6 +218,11 @@
    <class>DigitalClock</class>
    <extends>QLCDNumber</extends>
    <header>digitalclock.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QuoteLabel</class>
+   <extends>QLabel</extends>
+   <header>quotelabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     netstreampicture.cpp \
     digitalclock.cpp \
     nextcalendarevent.cpp \
-    tearoffdate.cpp
+    tearoffdate.cpp \
+    quotelabel.cpp
 
 HEADERS  += dialog.h \
     networkpicture.h \
@@ -30,7 +31,8 @@ HEADERS  += dialog.h \
     digitalclock.h \
     nextcalendarevent.h \
     calendarevent.h \
-    tearoffdate.h
+    tearoffdate.h \
+    quotelabel.h
 
 FORMS    += dialog.ui \
     nextcalendarevent.ui
